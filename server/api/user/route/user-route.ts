@@ -3,7 +3,7 @@
 import * as express from "express";
 import {UserController} from "../controller/user-controller";
 
-export class TodoRoutes {
+export class UserRoutes {
     static init(router: express.Router) {
       router
         .route("/api/users")

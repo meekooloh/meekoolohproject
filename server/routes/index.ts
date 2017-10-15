@@ -1,5 +1,9 @@
 import * as express from "express";
 import {TodoRoutes} from "../api/todo/route/todo-route";
+import {ArticleRoutes} from "../api/article/route/article-route";
+import {CarouselRoutes} from "../api/carousel/route/carousel-route";
+import {CategoryRoutes} from "../api/category/route/category-route";
+import {UserRoutes} from "../api/user/route/user-route";
 
 import {StaticDispatcher} from "../commons/static/index";
 
