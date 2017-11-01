@@ -5,7 +5,7 @@ export class CategoryController {
   static getAll(req: express.Request, res: express.Response): void {
       CategoryDAO
         ["getAll"]()
-        .then(categorys => res.status(200).json(categorys))
+        .then(category => res.status(200).json(category))
         .catch(error => res.status(400).json(error));
   }
 
@@ -18,7 +18,7 @@ export class CategoryController {
 
   static createCategory(req: express.Request, res: express.Response):void {
       let _category = req.body;
-
+    console.log(_category)
       CategoryDAO
         ["createCategory"](_category)
         .then(category => res.status(201).json(category))

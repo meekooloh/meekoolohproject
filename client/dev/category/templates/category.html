@@ -1,0 +1,35 @@
+<div class="category-container">
+  <form class="category-form">
+
+    <h1 class="category-title">{{title}}</h1>
+
+    <input type="text"
+           name="label"
+           [(ngModel)]="categoryForm.label"
+           [class.category-error]="!categoryForm.label.length"
+           placeholder="label"
+           autofocus />
+    <input type="text"
+           name="level"
+           [(ngModel)]="categoryForm.level"
+           [class.category-error]="!categoryForm.level.length"
+           placeholder="level"
+           autofocus />
+    <input type="text"
+           name="value"
+           [(ngModel)]="categoryForm.value"
+           [class.category-error]="!categoryForm.value.length"
+           placeholder="value"
+           autofocus />
+    <button (click)="add(categoryForm)"
+            [disabled]="!categoryForm">+</button>
+  </form>
+
+  <div class="category-list">
+    <div *ngFor="let category of categoryDisplay;"
+         class="category-item"
+         (click)="remove(category);">
+      <p>{{category.label}}</p>
+    </div>
+  </div>
+</div>

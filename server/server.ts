@@ -16,18 +16,23 @@ import {DBConfig} from "./config/db.conf";
 import {Routes} from "./routes/index";
 
 const app = express();
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 RoutesConfig.init(app);
 DBConfig.init();
 Routes.init(app, express.Router());
 
 const opts = {
-  key: fs.readFileSync(__dirname + "/cert/server.key"),
-  cert: fs.readFileSync(__dirname + "/cert/server.crt")
+    key: fs.readFileSync(__dirname + "/cert/server.key"),
+    cert: fs.readFileSync(__dirname + "/cert/server.crt")
 }
 
 http2.createServer(opts, app)
-     .listen(PORT, () => {
-       console.log(`up and running @: ${os.hostname()} on port: ${PORT}`);
-       console.log(`enviroment: ${process.env.NODE_ENV}`);
-     });
+    .listen(PORT, () => {
+        console.log(`up and running @: ${os.hostname()} on port: ${PORT}`);
+        console.log(`enviroment: ${process.env.NODE_ENV}`);
+    });

@@ -1,5 +1,14 @@
 import * as mongoose from "mongoose";
 
+export interface User {
+    username: String,
+    firstname: String,
+    surstname: String,
+    password: String,
+    lastAccess: Date,
+    createdAt: Date
+}
+
 let user = new mongoose.Schema({
     username: {type: String, required: true, trim: true},
     firstname: {type: String, required: true, trim: true},

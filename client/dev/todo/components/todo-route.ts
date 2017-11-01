@@ -9,7 +9,7 @@ import {
 
 const todoRoutes:Routes = [
 	{
-		path: "",
+		path: "todos",
 		component: TodoCmp,
 		pathMatch: "full"
 	}

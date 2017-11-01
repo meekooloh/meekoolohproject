@@ -1,5 +1,12 @@
 import * as mongoose from "mongoose";
+import { List } from "lodash";
 
+export interface Carousel {
+    picture: String,
+    links: List<String>,
+    active: Boolean,
+    createdAt: Date
+}
 let schema = new mongoose.Schema({
     picture: {type: String, required: true},
     links: {type: Array},

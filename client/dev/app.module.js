@@ -12,8 +12,14 @@ var forms_1 = require("@angular/forms");
 var platform_browser_1 = require("@angular/platform-browser");
 var app_1 = require("./app");
 var todo_cmp_1 = require("./todo/components/todo-cmp");
+var metadata_cmp_1 = require("./metadata/components/metadata-cmp");
+var article_cmp_1 = require("./article/components/article-cmp");
+var category_cmp_1 = require("./category/components/category-cmp");
 var todo_route_1 = require("./todo/components/todo-route");
+var article_route_1 = require("./article/components/article-route");
 var todo_service_1 = require("./todo/services/todo-service");
+var article_service_1 = require("./article/services/article-service");
+var category_service_1 = require("./category/services/category-service");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -23,14 +29,20 @@ var AppModule = /** @class */ (function () {
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 http_1.HttpModule,
-                todo_route_1.todoRouting
+                todo_route_1.todoRouting,
+                article_route_1.articleRouting
             ],
             declarations: [
                 app_1.App,
                 todo_cmp_1.TodoCmp,
+                article_cmp_1.ArticleCmp,
+                metadata_cmp_1.MetadataCmp,
+                category_cmp_1.CategoryCmp
             ],
             providers: [
                 todo_service_1.TodoService,
+                article_service_1.ArticleService,
+                category_service_1.CategoryService
             ],
             bootstrap: [
                 app_1.App,
