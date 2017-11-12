@@ -4,3 +4,4 @@
 
 install typings
     typings install debug --save
+
