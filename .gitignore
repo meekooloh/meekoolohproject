@@ -1,7 +1,16 @@
-*.js.map
+client/*.js
+!client/config.js
+**/*.js.map
 .idea
 coverage
 node_modules
 unit_coverage
 client/dev/bower_components
 typings
+**/*.css
+client/**/*.js
+server/**/*.js
+server/certs
+server/**/*.js
+server/*.js
+!server/index.js

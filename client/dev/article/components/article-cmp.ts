@@ -1,53 +1,104 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Validators, FormGroup, FormControl } from "@angular/forms";
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { ArticleService } from "../services/article-service";
+import { CategoryService } from "../../category/services/category-service";
 
 import { Article } from './../../../../server/api/article/model/article-model'
+import { Category } from './../../../../server/api/category/model/category-model'
 
 @Component({
   selector: "article-cmp",
   templateUrl: "article/templates/article.html",
-  styleUrls: ["article/styles/article.css"]
+  styleUrls: ["article/styles/article.css", "app.css"]
 })
-export class ArticleCmp implements OnInit {
-  title: string = "Add articles";
-  articles: Article[] = [];
+export class ArticleCmp implements OnInit, OnDestroy {
+  
+  private sub: any;
+  title: string;
+  article: Article;
+  categories: Category[] = [];
   articleForm: Article;
+  id: string;
 
-  constructor(private _articleService: ArticleService) {
+  constructor(
+      private _articleService: ArticleService,
+      private _categoryService: CategoryService,
+      private route: ActivatedRoute,
+      private router: Router) {
+  
     this.cleanForm();
   }
 
   ngOnInit() {
+    this.cleanForm();
+    this.sub = this.route.params.subscribe(params => {
+      this.id = params['id'];
+      if (this.id == "new") {
+        this.title = "Add article";
+
+      } else {
+        this.title = "Edit article";
+      }
+    });
+
     this._getAll();
+  }
+  validateData(article: Article): boolean {
+    if (article) {
+      if (/([^\s])/.test(article.title) &&
+        /([^\s])/.test(article.info) &&
+        !!article.category
+      ) {
+        return true;       
+      }
+    }
+    return false;
   }
 
   private _getAll(): void {
-    this._articleService
-        .getAll()
-        .subscribe((articles) => {
-          this.articles = articles;
+    if (this.id != "new") {
+      this._articleService
+        .getById(this.id)
+        .subscribe((article) => {
+          this.article = article;
+          this.articleForm = article;
         });
+    }
+    this._categoryService
+      .getAll()
+      .subscribe((categories) => {
+        this.categories = categories;
+      });
   }
 
   add(article: Article): void {
     this._articleService
         .add(article)
         .subscribe((m) => {
-          this.articles.push(m);
+          this.article = m;
           this.cleanForm();
+          this.router.navigate(["/articles"]);
         });
   }
 
-  remove(id: string): void {
+  update(article: Article): void {
+    article._id = undefined;
     this._articleService
-      .remove(id)
-      .subscribe(() => {
-        this.articles.forEach((t, i) => {
-          if (t._id === id)
-            return this.articles.splice(i, 1);
+        .update(this.id, article)
+        .subscribe((m) => {
+          this.article = m;
+          this.cleanForm();
+          this.router.navigate(["/articles"]);
         });
+  }
+
+  remove(): void {
+    this._articleService
+      .remove(this.id)
+      .subscribe(() => {
+        this.router.navigate(["/articles"]);
       });
   }
 
@@ -55,11 +106,16 @@ export class ArticleCmp implements OnInit {
     this.articleForm = {
       "title": "",
       "info": "",
-      "metadata": [""],
+      "metadata": [],
       "user": null,
       "category": null,
       "subCategory": [],
       "createdAt": new Date() 
     };
   }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
 }

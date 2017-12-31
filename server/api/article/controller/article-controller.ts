@@ -25,6 +25,16 @@ export class ArticleController {
         .catch(error => res.status(400).json(error));
   }
 
+  static updateArticle(req: express.Request, res: express.Response):void {
+    let _article = req.body;
+    let _id = req.params.id;
+    
+    ArticleDAO
+      ["updateArticle"](_id, _article)
+      .then(article => res.status(201).json(article))
+      .catch(error => res.status(400).json(error));
+}
+
   static deleteArticle(req: express.Request, res: express.Response): void {
     let _id = req.params.id;
 

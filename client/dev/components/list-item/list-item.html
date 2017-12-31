@@ -1,0 +1,9 @@
+<div class="list-items col-md-6">
+    <div class="list-item" *ngFor="let item of items">
+        <a
+            [routerLink]="[item._id]">
+            {{ item.title }}
+        </a>
+    </div>
+    <span *ngIf="items.length == 0">empty list...</span>
+</div>

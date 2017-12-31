@@ -21,6 +21,7 @@ articleSchema.static("getById", (id: string):Promise<any> => {
           return reject(new TypeError("Article is not a valid object."));
         }
 
+        //Article.findOne({"_id": new mongoose.Types.ObjectId(id)})
         Article.findById(id)
             .exec((err, article) => {
               err ? reject(err)
@@ -41,6 +42,19 @@ articleSchema.static("createArticle", (article:Object):Promise<any> => {
         err ? reject(err)
             : resolve(saved);
       });
+    });
+});
+
+articleSchema.static("updateArticle", (id: string, article:Object):Promise<any> => {
+    return new Promise((resolve:Function, reject:Function) => {
+      if (!_.isObject(article)) {
+        return reject(new TypeError("Article is not a valid object."));
+      }
+
+      Article.findByIdAndUpdate(id, article)
+        .exec((err, saved) => {
+            err ? reject(err): resolve(saved);
+        });
     });
 });
 

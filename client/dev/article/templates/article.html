@@ -1,42 +1,50 @@
-<div class="article-container">
-  <form class="article-form"
-        (submit)="add(articleForm.article)">
-
-    <h1 class="article-title">{{title}}</h1>
-
+<div class="main-container container">
+  <h1 class="main-title">{{title}}</h1>
+  <div class="row">
+    <div class="col-md-9">
+    </div>
+    <div class="col-md-3">
+      <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+        <button class="btn btn-outline-secundary" id="dropdownManual" ngbDropdownToggle>{{articleForm.category? articleForm.category.label:'Choose a category'}}</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownManual">
+          <button *ngFor="let category of categories" class="dropdown-item" 
+            (click)="articleForm.category=category">
+            {{category.label}}
+          </button>
+          <span *ngIf="categories.length == 0">-No categories added yet...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container col-md-12">
     <input type="text"
-           name="article.title"
-           [(ngModel)]="articleForm.title"
-           [class.article-error]="!articleForm.title.length"
-           placeholder="Title"
-           autofocus />
+          name="articleForm.title"
+          [(ngModel)]="articleForm.title"
+          [class.article-error]="!articleForm.title.length"
+          placeholder="Title"
+          autofocus />
     <textarea type="text"
-           name="article.info"
-           [(ngModel)]="articleForm.info"
-           [class.article-error]="!articleForm.info.length"
-           placeholder="Text"
+          name="article.info"
+          [(ngModel)]="articleForm.info"
+          [class.article-error]="!articleForm.info.length"
+          placeholder="Info"
     >
     </textarea>
-    <label>Links</label>
-    <div *ngFor="let md of articleForm.metadata">
-      <label>{{md}}</label>
-    </div>
-    <metadata-cmp
-      [metadatas]="articleForm.metadata"
-      (newMetadata)="articleForm.metadata = $event"
-    ></metadata-cmp>
-    <category-cmp
-      [category]="articleForm.category"
-    ></category-cmp>
-      <button type="submit"
-            [disabled]="!articleForm.title.length">+</button>
-  </form>
+  </div>   
+  <metadata-cmp
+    [metadatas]="articleForm.metadata"
+    (newMetadata)="articleForm.metadata = $event"
+  ></metadata-cmp>
+  <button class="round"
+  (click)="this.id == 'new'?add(articleForm):update(articleForm)"
+  [disabled]="!validateData(articleForm)">+</button>
 
-  <div class="article-list">
-    <div *ngFor="let article of articles;"
-         class="article-item"
+  <div class="article-list" *ngIf="validateData(article)">
+    <div  class="article-item list-item col-md-6"
          (click)="remove(article._id);">
-      <p>{{title}}</p>
+      <list-item-delete
+        [item]="article.title">
+      </list-item-delete>
     </div>
   </div>
 </div>

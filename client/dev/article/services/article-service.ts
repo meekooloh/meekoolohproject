@@ -44,6 +44,14 @@ export class ArticleService {
                .map((r) => r.json());
   }
 
+  update(id: string, article: Article): Observable<any> {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    return this._http
+               .put(ArticleService.ENDPOINT.replace(/:id/, id), article, {headers})
+               .map((r) => r.json());
+  }
+
   remove(id: string): Observable<any> {
     return this._http
                .delete(ArticleService.ENDPOINT.replace(/:id/, id));

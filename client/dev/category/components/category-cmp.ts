@@ -8,7 +8,7 @@ import { Category } from './../../../../server/api/category/model/category-model
 @Component({
   selector: "category-cmp",
   templateUrl: "category/templates/category.html",
-  styleUrls: ["category/styles/category.css"]
+  styleUrls: ["category/styles/category.css", "app.css"]
 })
 export class CategoryCmp implements OnInit, OnChanges {
   @Input() category: Category;
@@ -16,17 +16,17 @@ export class CategoryCmp implements OnInit, OnChanges {
   categoryForm: Category;
   categoryDisplay: Category[];
   @Output() newMetadata: EventEmitter<Category>;
-  
+  categoryError: string;
+
   constructor(private _categoryService: CategoryService) {
     this.newMetadata = new EventEmitter();
   }
 
   ngOnInit() {
-    debugger
     this.categoryForm = this.category ? this.category : {
       label : "",
-      level : "",
-      value: ""
+      level : null,
+      value: null
     };
     this._getAll();
   }
@@ -40,15 +40,25 @@ export class CategoryCmp implements OnInit, OnChanges {
   }
 
   add(category: Category): void {
-    console.log(category)
-    this._categoryService
-        .add(category)
-        .subscribe((c) => {
-          this.categoryDisplay.push(c);
-          this.cleanForm();
-          this.newMetadata.emit(this.categoryForm);
-          
-        });
+    if (category.value.toString().length == category.level) {
+      if (category.level > 0) {
+        let prevCatValue = category.value.toString().slice(0, category.value.toString().length-1);
+        let matchValue = this.categoryDisplay.find( c => {
+          return c.value == parseInt(prevCatValue);
+        })
+        if ( prevCatValue == "" || !!matchValue) {
+          this._categoryService
+          .add(category)
+          .subscribe((c) => {
+            this.categoryDisplay.push(c);
+            this.cleanForm();
+            this.newMetadata.emit(this.categoryForm);
+          });    
+        } else {
+          this.categoryError = "Level or value are not valid."
+        }
+      }
+    }
   }
 
   ngOnChanges() {
@@ -67,9 +77,9 @@ export class CategoryCmp implements OnInit, OnChanges {
 
   cleanForm() {
     this.categoryForm = {
-      level : "",
+      level : null,
       label : "",
-      value : ""
+      value : null
     }
   }
 }

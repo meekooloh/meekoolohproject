@@ -7,9 +7,9 @@ import { List } from "lodash";
 
 export interface Article {
     _id?: string,    
-    title: String,
-    info: String,
-    metadata: List<String>,
+    title: string,
+    info: string,
+    metadata: List<string>,
     user: User,
     category: Category,
     subCategory: List<Category>,

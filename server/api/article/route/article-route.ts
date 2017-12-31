@@ -12,6 +12,8 @@ export class ArticleRoutes {
 
       router
         .route("/api/articles/:id")
+        .get(ArticleController.getById)    
+        .put(ArticleController.updateArticle)
         .delete(ArticleController.deleteArticle);
     }
 }

@@ -1,0 +1,126 @@
+.container-block button{
+    height: 100px;
+    width: 80%;
+    border-radius: 10px;
+}
+
+.round {
+  margin-top: 20px;
+  border-radius: 100%;
+    width: 40px;
+    height: 40px;
+}
+
+span {
+    margin: auto;
+    color: grey;      
+}
+
+a {
+  color: grey;
+  font-style: italic;
+}
+
+.dropdown-item {
+  color: grey;
+}
+
+.dropdown-toggle {
+  color: grey;
+}
+.left {
+  float: left;
+}
+.list-item {
+  line-height: 50px;
+  text-align: center;
+  height: 50px;
+  margin: 5px;
+  border: 2px solid #ddd;
+  border-radius:5px;
+  cursor: pointer;
+  color: grey;
+}
+
+.main-container {
+    min-height: calc(100% - 130px);
+    font-family: "Roboto";
+    position: relative;
+    max-width: 900px;
+    margin: 45px auto 0;
+    padding: 20px 10px 10px 10px;
+    box-shadow: 0 -1px 0 #e5e5e5,
+                0 0 2px rgba(0,0,0,.12),
+                0 2px 4px rgba(0,0,0,.24);
+}
+  
+.main-container .main-title {
+  padding: 5px;
+  background-color: #fff;
+  position: absolute;
+  font-size: 30px;
+  top: -25px;
+  left: 0;
+}
+
+.main-container .main-form {
+  margin-top: 20px;
+}
+
+textarea {
+  color: grey;
+}
+.main-container input {
+  color: grey;
+  border: none;
+  border-bottom: 2px solid #ddd;
+  font-size: 17px;
+  padding: 5px 3px;
+  width: 90%;
+  box-sizing: border-box;
+}
+
+.main-container input:focus {
+  outline: 0;
+}
+
+.main-container button {
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.main-container button:focus,
+.main-container button:active {
+  outline: none;
+}
+
+button:disabled {
+  opacity: .7;
+  color: rgb(151, 156, 160);
+  background-color: #fff;
+  cursor: not-allowed;
+}
+
+.main-container .main-error {
+  border-bottom-color: #E22323;
+}
+
+.main-container .main-item {
+  padding: 3px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.main-container .main-item:hover {
+  background-color: #f1f2f3;
+}
+
+textarea {
+  resize: none;
+  margin-top: 5%;
+  outline: none;
+  border: 2px solid #ddd;
+  border-style: none none solid none;
+  width: 90%;
+  height: 300px;
+}

@@ -1,5 +1,5 @@
 <div class="metadata-container">
-  <form class="metadata-form">
+  <form class="main-form">
 
     <h1 class="metadata-title">{{title}}</h1>
 
@@ -10,15 +10,17 @@
            placeholder="Link"
            autofocus />
     
-      <button (click)="add(metadataForm)"
+      <button class="round" (click)="add(metadataForm)"
             [disabled]="!metadataForm.length">+</button>
   </form>
 
-  <div class="metadata-list">
+  <div class="main-list">
     <div *ngFor="let metadata of metadataDisplay;"
-         class="metadata-item"
+         class="main-item"
          (click)="remove(metadata);">
-      <p>{{metadata}}</p>
+      <list-item-delete
+        [item]="metadata">
+      </list-item-delete>
     </div>
   </div>
 </div>

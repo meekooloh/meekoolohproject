@@ -2,7 +2,7 @@ import * as mongoose from "mongoose";
 import { List } from "lodash";
 
 export interface Carousel {
-    picture: String,
+    picture: string,
     links: List<String>,
     active: Boolean,
     createdAt: Date

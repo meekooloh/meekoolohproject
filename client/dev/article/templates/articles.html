@@ -1,0 +1,17 @@
+<div class="main-container">
+    <h1 class="main-title">{{title}}</h1>
+    <div class="container col-md-12">
+        <div class="row">
+            <div class="container-block col-md-10">
+                <list-item
+                    [items]="articles"
+                ></list-item>
+            </div>
+            <div class="col-md-2">
+                <button class="round"
+                    (click)="addArticle()">+
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

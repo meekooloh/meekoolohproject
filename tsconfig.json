@@ -17,5 +17,5 @@
       "**/*.ts",
       "typings/main",
       "typings/index.d.ts"
-    ]
+    ]    
 }

@@ -7,8 +7,8 @@ import ArticleMongo from "./../../article/model/article-model";
 export interface Comment {
     user: User,
     article: Article,
-    title: String,
-    text: String,
+    title: string,
+    text: string,
     createdAt: Date
 }
 

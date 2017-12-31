@@ -1,10 +1,10 @@
 import * as mongoose from "mongoose";
 
 export interface User {
-    username: String,
-    firstname: String,
-    surstname: String,
-    password: String,
+    username: string,
+    firstname: string,
+    surstname: string,
+    password: string,
     lastAccess: Date,
     createdAt: Date
 }
