@@ -1,0 +1,1 @@
+export const types = ['image', 'mp4', 'youtube'];

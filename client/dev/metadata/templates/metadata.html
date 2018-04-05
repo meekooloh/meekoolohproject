@@ -4,14 +4,27 @@
     <h1 class="metadata-title">{{title}}</h1>
 
     <input type="text"
-           name="metadata"
-           [(ngModel)]="metadataForm"
-           [class.metadata-error]="!metadataForm.length"
+           name="metadataForm.link"
+           [(ngModel)]="metadataForm.link"
+           [class.metadata-error]="!metadataForm.link.length"
            placeholder="Link"
            autofocus />
+
+    <div class="col-md-3">
+      <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+        <button class="btn btn-outline-secundary" id="dropdownManual" ngbDropdownToggle>{{metadataForm.type? metadataForm.type:'Choose a type'}}</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownManual">
+          <button *ngFor="let type of types" class="dropdown-item" 
+            (click)="metadataForm.type=type">
+            {{type}}
+          </button>
+          <span *ngIf="types.length == 0">-No types added yet...</span>
+        </div>
+      </div>
+    </div>
     
       <button class="round" (click)="add(metadataForm)"
-            [disabled]="!metadataForm.length">+</button>
+            [disabled]="!metadataForm.link || !metadataForm.type">+</button>
   </form>
 
   <div class="main-list">
@@ -19,7 +32,7 @@
          class="main-item"
          (click)="remove(metadata);">
       <list-item-delete
-        [item]="metadata">
+        [item]="metadata.link + ' - (' + metadata.type + ')'">
       </list-item-delete>
     </div>
   </div>

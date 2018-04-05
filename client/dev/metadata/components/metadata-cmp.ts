@@ -1,17 +1,22 @@
 import { Component ,Input, Output, EventEmitter, OnInit, OnChanges } from '@angular/core';
 import { Validators, FormGroup, FormControl } from "@angular/forms";
+import { Metadata } from './../../../../server/api/metadata/model/metadata-model'
+import { types } from './../../app.utils';
 
 @Component({
   selector: "metadata-cmp",
   templateUrl: "metadata/templates/metadata.html",
   styleUrls: ["metadata/styles/metadata.css", "app.css"]
 })
+
 export class MetadataCmp implements OnInit, OnChanges {
-  @Input() metadatas: string[];
+  @Input() metadatas: Metadata[];
   title: string;
-  metadataForm: string;
-  metadataDisplay: string[];
-  @Output() newMetadata: EventEmitter<String[]>;
+  metadataForm: Metadata;
+  metadataDisplay: Metadata[];
+  types : string[];
+
+  @Output() newMetadata: EventEmitter<Metadata[]>;
   
   constructor() {
     this.newMetadata = new EventEmitter();
@@ -19,7 +24,11 @@ export class MetadataCmp implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.metadataForm = "";
+    this.types = types;
+    this.metadataForm = {
+      link: '',
+      type: ''
+    };
     this.metadataDisplay = this.metadatas ? this.metadatas : [];
   }
 
@@ -27,12 +36,15 @@ export class MetadataCmp implements OnInit, OnChanges {
     this.metadataDisplay = this.metadatas ? this.metadatas : [];    
   }
 
-  add(metadata: string) {
+  add(metadata: Metadata) {
     this.metadataDisplay.push(metadata);
-    this.metadataForm = "";
+    this.metadataForm = {
+      link: '',
+      type: ''
+    };
     this.newMetadata.emit(this.metadataDisplay);
   }
-  remove(metadata: string) {
+  remove(metadata: Metadata) {
     this.metadataDisplay.splice(this.metadataDisplay.indexOf(metadata), 1)
     this.newMetadata.emit(this.metadataDisplay);
   }
