@@ -61,13 +61,39 @@ export class CategoryCmp implements OnInit, OnChanges {
     }
   }
 
+  calculateValue(category: Category) {
+    this.categoryForm.level = category.level;
+    this.categoryForm.value = Math.max.apply(Math, (this.categoryDisplay.filter((e) => {
+        return (Math.floor(category.value/10) === Math.floor(e.value/10));
+      })).map((o) => {
+        return o.value;
+      })) + 1;
+  }
+  calculateChild(category: Category) {
+
+    this.categoryForm.level = category.level + 1;
+    if (this.categoryDisplay.filter((e) => (10 * category.level <= e.level && e.level < 10 * category.level + 10)).length > 0 ) {
+      // already children
+      this.categoryForm.value = Math.max.apply(Math, (this.categoryDisplay.filter((e) => {
+        return (10 * category.value <= e.value && e.value < 10 * category.value + 10);
+      })).map((o) => {
+        return o.value;
+      })) + 1;
+    } else {
+      this.categoryForm.value = parseInt(String(category.value) + String(0));
+    }
+  }
   ngOnChanges() {
-    debugger;
   }
 
   remove(category: Category) {
     this.categoryDisplay.forEach(c => {
       if (c._id == category._id) {
+        this._categoryService.remove(c._id).subscribe(res => {
+          console.log('deleted item');
+        }, err => {
+          console.log(err);
+        })
         // delete c;
       }
     })

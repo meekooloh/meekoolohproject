@@ -9,6 +9,13 @@ export class ArticleController {
         .catch(error => res.status(400).json(error));
   }
 
+  static getAllList(req: express.Request, res: express.Response): void {
+    ArticleDAO
+      ["getList"](parseInt(req.params.init), parseInt(req.params.end))
+      .then(articles => res.status(200).json(articles))
+      .catch(error => res.status(400).json(error));
+  }
+
   static getById(req: express.Request, res: express.Response):void {
       ArticleDAO
         ["getById"](req.params.id)

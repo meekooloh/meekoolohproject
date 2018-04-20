@@ -4,26 +4,58 @@
     <h1 class="main-title">{{title}}</h1>
     <div class="container">
       <div class="row">
-        <div class="container-block col-md-12">              
+        <div class="container-block col-md-6">
           <input type="text"
                 name="label"
                 [(ngModel)]="categoryForm.label"
                 [class.category-error]="categoryForm.label && !categoryForm.label.length"
                 placeholder="label"
                 autofocus />
-          <input type="text"
-                name="level"
-                [(ngModel)]="categoryForm.level"
-                [class.category-error]="categoryForm.level && !categoryForm.level.length"
-                placeholder="level"
-                autofocus />
-          <input type="text"
+        </div>
+        <div class="container-block col-md-6">
+            <input type="text"
                 name="value"
                 [(ngModel)]="categoryForm.value"
                 [class.category-error]="categoryForm.value && !categoryForm.value.length"
                 placeholder="value"
                 autofocus />
         </div>
+      </div>
+      <div class="row">
+        <div class="container-block col-md-6">
+          <input type="text"
+                name="level"
+                [(ngModel)]="categoryForm.level"
+                [class.category-error]="categoryForm.level && !categoryForm.level.length"
+                placeholder="level"
+                autofocus />
+        </div>
+
+        <div class="col-md-3">
+            <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+              <button class="btn btn-outline-secundary" id="dropdownManual" ngbDropdownToggle>Category alike</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownManual">
+                <button *ngFor="let type of categoryDisplay" class="dropdown-item" 
+                  (click)="categoryForm.level=type.level;calculateValue(type)">
+                  {{type.label}}
+                </button>
+                <span *ngIf="!categoryDisplay || categoryDisplay.length == 0">-No types added yet...</span>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+              <button class="btn btn-outline-secundary" id="dropdownManual" ngbDropdownToggle>Category child of</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownManual">
+                <button *ngFor="let type of categoryDisplay" class="dropdown-item" 
+                  (click)="calculateChild(type)">
+                  {{type.label}}
+                </button>
+                <span *ngIf="!categoryDisplay || categoryDisplay.length == 0">-No types added yet...</span>
+              </div>
+            </div>
+        </div>
+
         <div class="col-md-2">
           <button class="round" (click)="add(categoryForm)"
             [disabled]="!categoryForm">+</button>
@@ -36,7 +68,7 @@
       class="category-item list-item col-md-6"
       (click)="remove(category);">
     <list-item-delete
-      [item]="category.label">
+      [item]="category.label + ' - level ' + category.level ">
     </list-item-delete>
   </div>
 

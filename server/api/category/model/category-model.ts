@@ -3,8 +3,8 @@ import * as mongoose from "mongoose";
 export interface Category {
     _id?: string,
     label: string,
-    level: Number,
-    value: Number,
+    level: number,
+    value: number,
     createdAt?: Date
 }
 

@@ -11,9 +11,15 @@ export class ArticleRoutes {
         .post(ArticleController.createArticle);
 
       router
-        .route("/api/articles/:id")
-        .get(ArticleController.getById)    
+        .route("/api/articles/:init/:end")
+        .get(ArticleController.getAllList)
         .put(ArticleController.updateArticle)
         .delete(ArticleController.deleteArticle);
+      router
+        .route("/api/articles/:id")
+        .get(ArticleController.getById)
+        .put(ArticleController.updateArticle)
+        .delete(ArticleController.deleteArticle);
+
     }
 }

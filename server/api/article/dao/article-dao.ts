@@ -15,6 +15,18 @@ articleSchema.static("getAll", ():Promise<any> => {
     });
 });
 
+articleSchema.static("getList", (start: number, end: number):Promise<any> => {
+    return new Promise((resolve:Function, reject:Function) => {
+        let _query = {};
+
+        Article.find(_query).sort({createdAt: -1}).skip(start).limit(end - start)
+            .exec((err, articles) => {
+              err ? reject(err)
+                  : resolve(articles);
+            });
+    });
+});
+
 articleSchema.static("getById", (id: string):Promise<any> => {
     return new Promise((resolve:Function, reject:Function) => {
         if (!id) {
