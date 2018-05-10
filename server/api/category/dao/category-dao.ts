@@ -8,9 +8,9 @@ categorySchema.static("getAll", ():Promise<any> => {
         let _query = {};
 
         Category.find(_query)
-            .exec((err, categorys) => {
+            .exec((err, categories) => {
               err ? reject(err)
-                  : resolve(categorys);
+                  : resolve(categories);
             });
     });
 });

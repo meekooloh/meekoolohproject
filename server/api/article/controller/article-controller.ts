@@ -4,14 +4,14 @@ import ArticleDAO from "../dao/article-dao";
 export class ArticleController {
   static getAll(req: express.Request, res: express.Response): void {
       ArticleDAO
-        ["getAll"]()
+        ["getAll"](req.query)
         .then(articles => res.status(200).json(articles))
         .catch(error => res.status(400).json(error));
   }
 
   static getAllList(req: express.Request, res: express.Response): void {
     ArticleDAO
-      ["getList"](parseInt(req.params.init), parseInt(req.params.end))
+      ["getList"](parseInt(req.params.init), parseInt(req.params.end), req.query)
       .then(articles => res.status(200).json(articles))
       .catch(error => res.status(400).json(error));
   }

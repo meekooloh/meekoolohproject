@@ -9,16 +9,16 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Backend",
-            "program": "${workspaceRoot}/server.js",
+            "program": "${workspaceRoot}/server.ts",
             "cwd": "${workspaceRoot}/api",
             "env": {
                 "NODE_ENV": "development",
-                "PORT" : 3333,
+                "PORT" : "3333",
                 "SERVICE_ENVIRONMENT": "local"
             },
             "console": "internalConsole",
             "sourceMaps": true,
-            "outFiles": ["${workspaceRoot}/**/*.js"]
+            "outFiles": ["${workspaceRoot}/server.js", "${workspaceRoot}/**/*.js"]
         }
     ]
 }
