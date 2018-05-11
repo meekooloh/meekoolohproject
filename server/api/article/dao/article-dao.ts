@@ -53,25 +53,25 @@ articleSchema.static("getAll", (filters: any):Promise<any> => {
             keys.forEach(async function (key) {
                 var value;
                 if (key === 'category') {
-                    categories = await Category.find({}).exec();
+                    let categories = await Category.find({}).exec();
                     let categoryFilter = categories.find( c => String(c._id) == filters[key]);
-                    let categoryFiltersIds = categories.filter(c => (String(c['value'])
+                    let categoryFiltersIds= categories.filter(c => (String(c['value'])
                         .slice(0, String(categoryFilter['value']).length) == categoryFilter['value']))
-                            .map(e => String(e['_id']));
-                            _query['$or']= []
-                            categoryFiltersIds.forEach(c => {
-                                let newObj = { };
-                                newObj[key + '._id'] = c;
-                                _query['$or'].push(newObj);
-                            });
+                        .map(e => String(e['_id']));
+                    _query['$or']= []
+                    categoryFiltersIds.forEach(c => {
+                        let newObj = { };
+                        newObj[key + '._id'] = c;
+                        _query['$or'].push(newObj);
+                    });
                 } else {
                     value = filters[key];
                     _query[key + '._id'] = value;
                 }
                 Article.find(_query).sort({createdAt: -1}).skip(start).limit(end - start)
                 .exec((err, articles) => {
-                  err ? reject(err)
-                      : resolve(articles);
+                    err ? reject(err)
+                        : resolve(articles);
                 });
             });
         } else {
