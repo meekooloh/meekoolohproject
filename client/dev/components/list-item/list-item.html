@@ -2,7 +2,7 @@
     <div class="list-item" *ngFor="let item of items">
         <a
             [routerLink]="[item._id]">
-            {{ item.title }}
+            {{ item.title || item.route.label }}
         </a>
     </div>
     <span *ngIf="items.length == 0">empty list...</span>

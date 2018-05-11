@@ -7,6 +7,12 @@ export interface Route {
     route: string,
     createdAt: Date
 }
+export interface RouteModel {
+    _id?: string,    
+    label: string,
+    route: string,
+    createdAt?: Date
+}
 
 let schema = new mongoose.Schema({
     label: {type: String, required: true},

@@ -1,6 +1,7 @@
 .container-block button{
     height: 100px;
-    width: 80%;
+    width: calc(100% - 20px);
+    margin: 10px;
     border-radius: 10px;
 }
 

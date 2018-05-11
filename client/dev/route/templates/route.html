@@ -1,0 +1,43 @@
+<div class="main-container">
+  <form class="main-form">
+
+    <h1 class="main-title">{{title}}</h1>
+    <div class="container">
+      <div class="row">
+        <div class="container-block col-md-4">
+          <input type="text"
+                name="label"
+                [(ngModel)]="routeForm.label"
+                [class.route-error]="routeForm.label && !routeForm.label.length"
+                placeholder="label"
+                autofocus />
+        </div>
+        <div class="container-block col-md-4">
+            <input type="text"
+                name="route"
+                [(ngModel)]="routeForm.route"
+                [class.route-error]="routeForm.route && !routeForm.route.length"
+                placeholder="route"
+                autofocus />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <button class="round" (click)="add(routeForm)"
+            [disabled]="!routeForm">+</button>
+          <span *ngIf="route-error">{{route-error}}</span>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div *ngFor="let route of routeDisplay;"
+      class="route-item list-item row"
+      (click)="remove(route);">
+    <div class="col-sm-6">
+      <list-item-delete
+        [item]="route.label + ' - route ' + route.route ">
+      </list-item-delete>
+    </div>
+</div>
+
+</div>

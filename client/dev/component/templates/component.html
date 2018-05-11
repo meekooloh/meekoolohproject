@@ -1,0 +1,54 @@
+<div class="main-container">
+  <form class="main-form">
+
+    <h1 class="main-title">{{title}}</h1>
+    <div class="container">
+      <div class="row">
+        <div class="container-block col-md-4">
+          <input type="text"
+                name="input"
+                [(ngModel)]="componentForm.input"
+                [class.component-error]="componentForm.input && !componentForm.input.length"
+                placeholder="input data object name"
+                autofocus />
+        </div>
+        <div class="container-block col-md-4">
+            <input type="text"
+                name="name"
+                [(ngModel)]="componentForm.name"
+                [class.component-error]="componentForm.name && !componentForm.name.length"
+                placeholder="name"
+                autofocus />
+        </div>
+        <div class="container-block col-md-4">
+          <input type="text"
+                name="image"
+                [(ngModel)]="componentForm.image"
+                [class.component-error]="componentForm.image && !componentForm.level.image"
+                placeholder="image base64"
+                autofocus />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <button class="round" (click)="add(componentForm)"
+            [disabled]="!componentForm">+</button>
+          <span *ngIf="component-error">{{component-error}}</span>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div *ngFor="let component of componentDisplay;"
+      class="component-item list-item row"
+      (click)="remove(component);">
+    <div class="col-sm-6">
+      <list-item-delete
+        [item]="component.name + ' - input data :' + component.input ">
+      </list-item-delete>
+    </div>
+    <div class="col-sm-6">
+      <img class="cmp-image" src="{{component.image}}"/>
+    </div>
+</div>
+
+</div>

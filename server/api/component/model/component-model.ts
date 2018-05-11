@@ -6,7 +6,15 @@ export interface Component {
     input: any,
     name: string,
     image: string,
-    createdAt: Date
+    createdAt?: Date
+}
+
+export interface ComponentModel {
+    _id?: string,    
+    input: any,
+    name: string,
+    image: string,
+    createdAt?: Date
 }
 
 let schema = new mongoose.Schema({

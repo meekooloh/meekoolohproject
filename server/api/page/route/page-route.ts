@@ -11,7 +11,7 @@ export class PageRoutes {
         .post(PageController.createPage);
 
       router
-        .route("/api/page/:id")
+        .route("/api/pages/:id")
         .get(PageController.getById)
         .put(PageController.updatePage)
         .delete(PageController.deletePage);

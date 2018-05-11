@@ -2,7 +2,6 @@
   <h1 class="main-title">{{title}}</h1>
   <div class="container container-block">
     <div class="row">
-
         <div class="container-block col-md-4">
           <button 
             (click)="enroute('articles')"
@@ -17,8 +16,28 @@
         </div>
         <div class="container-block col-md-4">
           <button 
+            (click)="enroute('components')"
+            >Components
+          </button>   
+        </div>
+      </div>
+      <div class="row">
+        <div class="container-block col-md-4">
+          <button 
+            (click)="enroute('routes')"
+            >Routes
+          </button>   
+        </div>
+        <div class="container-block col-md-4">
+          <button 
             (click)="enroute('users')"
             >Users
+          </button>   
+        </div>
+        <div class="container-block col-md-4">
+          <button 
+            (click)="enroute('pages')"
+            >Pages
           </button>   
         </div>
     </div>

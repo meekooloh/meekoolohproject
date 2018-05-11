@@ -21,5 +21,5 @@ export class ComponentRoutes {
         .put(ComponentController.updateComponent)
         .delete(ComponentController.deleteComponent);
 
-    }
+    } 
 }

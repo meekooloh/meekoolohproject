@@ -6,11 +6,17 @@ import { CategoryRoutes } from "../api/category/route/category-route";
 import { UserRoutes } from "../api/user/route/user-route";
 
 import {StaticDispatcher} from "../commons/static/index";
+import { ComponentRoutes } from "../api/component/route/component-route";
+import { PageRoutes } from "../api/page/route/page-route";
+import { RouteRoutes } from "../api/route/route/route-route";
 
 
 export class Routes {
     static init(app: express.Application, router: express.Router) {
         TodoRoutes.init(router);
+        RouteRoutes.init(router);
+        ComponentRoutes.init(router);
+        PageRoutes.init(router);
         ArticleRoutes.init(router);
         CarouselRoutes.init(router);
         CategoryRoutes.init(router);

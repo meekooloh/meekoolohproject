@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule, Component } from "@angular/core";
 import { HttpModule } from "@angular/http";
 import { FormsModule, FormBuilder } from "@angular/forms";
 import { BrowserModule  } from "@angular/platform-browser";
@@ -20,6 +20,16 @@ import { TodoService }   from "./todo/services/todo-service";
 import { CategoryService }   from "./category/services/category-service";
 import { ArticleService }   from "./article/services/article-service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { componentRouting } from "./component/components/component-route";
+import { ComponentCmp } from "./component/components/component-cmp";
+import { ComponentService } from "./component/services/component-service";
+import { routeRouting } from "./route/components/route-route";
+import { RouteCmp } from "./route/components/route-cmp";
+import { RouteService } from "./route/services/route-service";
+import { pageRouting } from "./page/components/page-route";
+import { PagesCmp } from "./page/components/pages-cmp";
+import { PageCmp } from "./page/components/page-cmp";
+import { PageService } from "./page/services/page-service";
 
 @NgModule({
     imports: [
@@ -30,6 +40,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       todoRouting,
       categoryRouting,
       articleRouting,
+      componentRouting,
+      routeRouting,
+      pageRouting,
       NgbModule.forRoot(),
     ],
     declarations: [
@@ -41,13 +54,20 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       ArticlesCmp,
       ArticleCmp,
       MetadataCmp,
-      CategoryCmp
+      CategoryCmp,
+      ComponentCmp,
+      RouteCmp,
+      PagesCmp,
+      PageCmp
     ],
     providers: [
       TodoService,
       MainService,
       ArticleService,
-      CategoryService
+      CategoryService,
+      ComponentService,
+      RouteService,
+      PageService
     ],
     bootstrap: [
       App,

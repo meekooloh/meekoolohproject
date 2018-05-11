@@ -3,7 +3,7 @@
 import * as express from "express";
 import { RouteController } from "../controller/route-controller";
 
-export class PageRoutes {
+export class RouteRoutes {
     static init(router: express.Router) {
       router
         .route("/api/routes")
