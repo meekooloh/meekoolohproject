@@ -7,7 +7,10 @@ import { async } from "@angular/core/testing";
 
 pageSchema.static("getAll", (filters: any):Promise<any> => {
     return new Promise((resolve:Function, reject:Function) => {
-        let _query = {};
+        var _query = {};
+        if (filters.route) {
+            _query['route._id'] = filters.route;
+        }
         Page.find(_query)
             .exec((err, pages) => {
             err ? reject(err)
