@@ -14,3 +14,4 @@ server/certs
 server/**/*.js
 server/*.js
 !server/index.js
+**/*.map
