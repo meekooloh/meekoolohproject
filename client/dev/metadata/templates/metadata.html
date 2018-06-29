@@ -30,9 +30,9 @@
   <div class="main-list">
     <div *ngFor="let metadata of metadataDisplay;"
          class="main-item"
-         (click)="remove(metadata);">
+         (dblclick)="remove(metadata);">
       <list-item-delete
-        [item]="metadata.link + ' - (' + metadata.type + ')'">
+        [item]="metadata.link + ' - (' + metadata.type + ')' + ' - &lt;metadata ' + metadata._id  + '/&gt;' ">
       </list-item-delete>
     </div>
   </div>
